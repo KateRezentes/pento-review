@@ -1,0 +1,19 @@
+<div><%= @content %></div>
+
+<%= f = form_for @changeset, "#",
+  phx_target: @myself,
+  phx_submit: "save",
+  id: "demographic-form" %>
+
+  <%= label f, :sex %>
+  <%= select f, :sex, [nil, "female", "male"] %>
+  <%= error_tag f, :sex %>
+
+  <%= label f, :year_of_birth %>
+  <%= select f, :year_of_birth, Enum.concat([nil], Enum.reverse(1940..2020)) %>
+  <%= error_tag f, :year_of_birth %>
+
+  <%= hidden_input f, :user_id %>
+
+  <%= submit "Save", phx_disable_with: "Saving..." %>
+</form>
